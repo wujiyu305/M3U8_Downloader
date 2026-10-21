@@ -783,3 +783,13 @@ the run that froze, and replay hundreds of repaints rather than one.
 
 ⚠️ This is also why the weighted overall bar and the per-stream weights could be wrong for such
 streams before: they key on the label, and a truncated one no longer began with `Vid`/`Aud`/`Sub`.
+
+## `Segment count check not pass` is usually the server, not the network
+
+`DownloadJob.Failure.explained` appends advice to that error. Measured on an Apple event
+stream: one CDN segment answered `Content-Length: 2479526` and closed after **one byte** for
+plain, HTTP/1.1, Range and cache-busted requests, so the engine's retries (default 3, 1 s apart)
+never help; raising Threads/Retries is not the fix. Only some variants were damaged (5 of 34
+at segment 325), so another stream works, or `--check-segments-count false` yields a file missing
+that segment. The raw engine text stays first (`lastErrorMessage` is unchanged); matching relies on
+the pinned `--ui-language en-US`.

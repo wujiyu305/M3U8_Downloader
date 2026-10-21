@@ -76,7 +76,7 @@ nonisolated struct DownloadJob: Identifiable, Sendable {
         var message: String {
             switch self {
             case .engineExited(let code, let lastError):
-                if let lastError, !lastError.isEmpty { return lastError }
+                if let lastError, !lastError.isEmpty { return Self.explained(lastError) }
                 return "The download engine exited with code \(code)."
             case .toolMissing(let description): return description
             case .launchFailed(let description): return description
@@ -90,9 +90,29 @@ nonisolated struct DownloadJob: Identifiable, Sendable {
             case .streamProbeFailed(let description):
                 return "Could not list the available tracks: \(description)"
             case .engineReportedFailure(let lastError):
-                if let lastError, !lastError.isEmpty { return lastError }
+                if let lastError, !lastError.isEmpty { return Self.explained(lastError) }
                 return "The download engine reported the download as failed."
             }
+        }
+
+        /// The engine's own wording plus, for the one failure that is routinely not the
+        /// user's doing, what to try.
+        ///
+        /// `Segment count check not pass, total: 774, downloaded: 773.` reads like a flaky
+        /// connection, and a retry is the obvious response — but the same segment fails
+        /// every time. Measured on an Apple event stream: the CDN answered one segment with
+        /// `Content-Length: 2479526` and then closed the connection after **one byte**, for
+        /// plain, HTTP/1.1, Range and cache-busted requests alike, and the engine's own
+        /// retries (default 3, one second apart) could not change that. Only some variants of
+        /// the stream were damaged, so choosing another one works. The pinned
+        /// `--ui-language en-US` is what makes matching the English text reliable.
+        static func explained(_ lastError: String) -> String {
+            guard lastError.contains("Segment count check not pass") else { return lastError }
+            return lastError
+                + " A segment could not be downloaded in full. If the same one fails on every"
+                + " attempt, the server's copy of it is damaged and retrying will not help."
+                + " Choose a different stream, or turn off Check segment count under"
+                + " Advanced to accept a result that is missing that segment."
         }
     }
 

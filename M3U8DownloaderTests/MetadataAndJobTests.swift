@@ -782,13 +782,36 @@ struct DownloadJobVerdictTests {
         #expect(!DownloadJob.Failure.engineReportedFailure(lastError: nil).message.isEmpty)
     }
 
+    @Test("A missing segment says what to try, since retrying cannot fix a damaged one")
+    func segmentCountFailureExplainsItself() {
+        let raw = "Segment count check not pass, total: 774, downloaded: 773."
+        for failure in [
+            DownloadJob.Failure.engineReportedFailure(lastError: raw),
+            DownloadJob.Failure.engineExited(code: 1, lastError: raw),
+        ] {
+            let message = failure.message
+            #expect(message.hasPrefix(raw), "the engine's own text must stay first")
+            #expect(message.contains("different stream"))
+            #expect(message.contains("Check segment count"))
+        }
+    }
+
+    @Test("Other failures are shown exactly as the engine worded them")
+    func otherFailuresAreUnchanged() {
+        let raw = "The response ended prematurely. (ResponseEnded)"
+        #expect(DownloadJob.Failure.engineReportedFailure(lastError: raw).message == raw)
+        #expect(DownloadJob.Failure.engineExited(code: 1, lastError: raw).message == raw)
+    }
+
     @Test("A reported failure needs no exit code to describe itself")
     func engineReportedFailureMessage() {
         // The point of this case existing: there is no non-zero code to quote, because
         // the engine exits 0 even when it declares the download failed.
         let withCause = DownloadJob.Failure.engineReportedFailure(
             lastError: "Segment count check not pass, total: 8, downloaded: 6.")
-        #expect(withCause.message == "Segment count check not pass, total: 8, downloaded: 6.")
+        // The engine's wording stays first and intact; the hint only follows it.
+        #expect(
+            withCause.message.hasPrefix("Segment count check not pass, total: 8, downloaded: 6."))
 
         let withoutCause = DownloadJob.Failure.engineReportedFailure(lastError: nil)
         #expect(withoutCause.message.contains("failed"))

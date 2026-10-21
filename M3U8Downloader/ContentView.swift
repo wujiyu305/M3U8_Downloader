@@ -54,6 +54,14 @@ struct ContentView: View {
     @State private var decisionJobID: UUID?
     /// A running job the user asked to remove, awaiting confirmation.
     @State private var removalCandidateID: UUID?
+    /// The fix-it text behind a tool banner's "How to fix" button.
+    @State private var bannerDetail: BannerDetail?
+
+    struct BannerDetail: Identifiable {
+        let id = UUID()
+        let title: String
+        let text: String
+    }
     @State private var streamSelection: Set<String> = []
 
     /// Restores what the user had last time. Not a preset system: one implicit
@@ -111,6 +119,18 @@ struct ContentView: View {
             if let job = decisionJob {
                 decisionSheet(for: job)
             }
+        }
+        .alert(
+            bannerDetail?.title ?? "",
+            isPresented: Binding(
+                get: { bannerDetail != nil },
+                set: { shown in if !shown { bannerDetail = nil } }
+            ),
+            presenting: bannerDetail
+        ) { _ in
+            Button("OK") { bannerDetail = nil }
+        } message: { detail in
+            Text(detail.text)
         }
         .confirmationDialog(
             "Stop and remove this job?",
@@ -366,34 +386,16 @@ struct ContentView: View {
         systemImage: String,
         tint: Color
     ) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: systemImage)
-                .font(.title3)
-                .foregroundStyle(tint)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.callout.weight(.semibold))
-                if let detail {
-                    Text(detail)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .textSelection(.enabled)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-            Spacer(minLength: 8)
-            Button("Check again") { coordinator.refreshToolStatus() }
-                .controlSize(.small)
-        }
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(tint.opacity(0.10))
+        ToolBanner(
+            title: title,
+            hasDetail: detail != nil,
+            systemImage: systemImage,
+            tint: tint,
+            onShowDetail: {
+                if let detail { bannerDetail = BannerDetail(title: title, text: detail) }
+            },
+            onCheckAgain: { coordinator.refreshToolStatus() }
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .strokeBorder(tint.opacity(0.28))
-        )
-        .padding([.horizontal, .top], 16)
     }
 
     // MARK: - Result actions

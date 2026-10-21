@@ -229,3 +229,13 @@ To look at it without opening Icon Composer — also how it was checked, in Defa
 (`--rendition Dark`, or `TintedLight` with `--tint-color 0.6 --tint-strength 0.7`.) The
 `icon.json` keys were written from memory of the format rather than from documentation; `ictool`
 accepting and rendering it, including the per-layer `opacity`, is the evidence they are right.
+
+## The tool banner must stay one row
+
+A banner above the editing panel with a multi-line `Text` (`fixedSize(vertical:)`, long recovery
+text) made the whole window lay out ~1 400 pt too tall: the pane slid under the toolbar and the
+URL field, action bar and log were off-screen. Nothing shows in development because the engine is
+embedded and no banner appears; it showed in an archive built without the engine, and would for
+anyone without ffmpeg. Long text belongs behind "How to fix" (an alert), not in the banner.
+`ToolBannerTests` fails on the old design (checked by restoring it); it measures the banner alone,
+so a *new* cause of window overflow still needs a look at a Release build with the engine removed.

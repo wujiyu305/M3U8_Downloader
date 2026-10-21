@@ -1,0 +1,31 @@
+10:24:55.709 INFO : Output is redirected, ANSI colors are cleared.
+10:24:55.715 INFO : N_m3u8DL-RE (Beta version) 20260628
+10:24:55.717 INFO : Loading URL: served.m3u8
+10:24:55.718 INFO : Content Matched: HTTP Live Streaming10:24:55.718 INFO : Parsing streams...
+10:24:55.720 WARN : Writing meta json
+10:24:55.720 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+10:24:55.721 INFO : Vid Kbps | 3 Segments | ~00m27s10:24:55.721 INFO : Selected streams:
+10:24:55.721 INFO : Vid Kbps | 3 Segments | ~00m27s10:24:55.721 WARN : Writing meta json
+10:24:55.721 INFO : Save Name: probe210:24:55.721 INFO : Start downloading...Vid KbpsVid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(1) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(2) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--10:24:58.737 WARN : Permission denied (127.0.0.1:8765)Vid Kbps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0/3 0.00% -0.00Bps(3) --:--:--Unhandled exception: System.Exception: Download first segment failed!
+   at N_m3u8DL_RE.DownloadManager.SimpleDownloadManager.<DownloadStreamAsync>d__8.MoveNext() + 0x4778
+--- End of stack trace from previous location ---
+   at N_m3u8DL_RE.DownloadManager.SimpleDownloadManager.<>c__DisplayClass9_0.<<StartDownloadAsync>b__0>d.MoveNext() + 0x2a0
+--- End of stack trace from previous location ---
+   at Spectre.Console.Progress.<>c__DisplayClass36_0.<<StartAsync>b__0>d.MoveNext() + 0x70
+--- End of stack trace from previous location ---
+   at Spectre.Console.Progress.<>c__DisplayClass37_0`1.<<StartAsync>b__0>d.MoveNext() + 0x2ec
+--- End of stack trace from previous location ---
+   at Spectre.Console.DefaultExclusivityMode.<RunAsync>d__3`1.MoveNext() + 0x18c
+--- End of stack trace from previous location ---
+   at Spectre.Console.Progress.<StartAsync>d__37`1.MoveNext() + 0x78
+--- End of stack trace from previous location ---
+   at Spectre.Console.Progress.<StartAsync>d__36.MoveNext() + 0x6c
+--- End of stack trace from previous location ---
+   at N_m3u8DL_RE.DownloadManager.SimpleDownloadManager.<StartDownloadAsync>d__9.MoveNext() + 0x7c
+--- End of stack trace from previous location ---
+   at N_m3u8DL_RE.Program.<DoWorkAsync>d__3.MoveNext() + 0xf0
+--- End of stack trace from previous location ---
+   at System.CommandLine.Command.<>c__DisplayClass33_0.<<SetAction>b__0>d.MoveNext() + 0x5c
+--- End of stack trace from previous location ---
+   at System.CommandLine.Invocation.InvocationPipeline.<InvokeAsync>d__0.MoveNext() + 0x1bc
+tput: No value for $TERM and no -T specified

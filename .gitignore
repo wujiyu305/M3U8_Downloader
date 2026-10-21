@@ -1,0 +1,12 @@
+# Per-developer identity: bundle identifier prefix, signing team. The project reads these from
+# Config/Local.xcconfig and falls back to the placeholders in Config/Shared.xcconfig.
+# Copy Config/Local.xcconfig.example to start one.
+Config/Local.xcconfig
+
+# Xcode per-user state (window layout, breakpoints, schemes made by "Autocreate").
+xcuserdata/
+*.xcuserstate
+
+DerivedData/
+build/
+.DS_Store

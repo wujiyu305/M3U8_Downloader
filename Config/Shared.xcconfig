@@ -1,0 +1,10 @@
+// Settings that identify one developer rather than the project.
+//
+// The defaults below let anyone build (ad-hoc signed, placeholder identifier). Put the real
+// values in Config/Local.xcconfig, which is gitignored; see Local.xcconfig.example.
+// Per-target identifiers are APP_BUNDLE_ID_PREFIX plus the product name.
+
+APP_BUNDLE_ID_PREFIX = com.example
+
+// Optional and last, so anything it sets overrides the defaults above.
+#include? "Local.xcconfig"

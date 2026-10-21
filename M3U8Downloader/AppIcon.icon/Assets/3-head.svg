@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Front layer: the arrowhead, with softly rounded corners. -->
+  <path d="M 414 520 L 610 520 Q 660 520 634 563 L 542 676 Q 512 710 482 676 L 390 563 Q 364 520 414 520 Z" fill="#FFFFFF"/>
+</svg>

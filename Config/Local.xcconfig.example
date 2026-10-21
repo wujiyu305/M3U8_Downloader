@@ -1,0 +1,8 @@
+// Copy to Local.xcconfig (gitignored) and fill in. Anything not set here keeps the default
+// from Shared.xcconfig.
+
+// Reverse-DNS prefix of your bundle identifiers: the app becomes <prefix>.M3U8Downloader.
+APP_BUNDLE_ID_PREFIX = com.yourname
+
+// Only if you sign with a development team instead of ad hoc:
+// DEVELOPMENT_TEAM = ABCDE12345

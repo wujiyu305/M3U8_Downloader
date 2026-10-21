@@ -6,5 +6,12 @@
 
 APP_BUNDLE_ID_PREFIX = com.example
 
+// Apple silicon only. The embedded download engine is built for arm64 unless
+// scripts/build-engine.sh --universal was run in the parent repository, and a universal app with an
+// arm64-only engine is the worst of both: the embed step skips the engine ("has architectures
+// 'arm64' but this build needs 'x86_64'") and the app ships without one. Delete this line, and
+// build the engine with --universal, to support Intel Macs.
+ARCHS = arm64
+
 // Optional and last, so anything it sets overrides the defaults above.
 #include? "Local.xcconfig"

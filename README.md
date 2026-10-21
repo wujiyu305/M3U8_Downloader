@@ -18,10 +18,12 @@
 
 | | |
 |---|---|
-| 系统 | macOS 14.0 及以上，仅 macOS |
+| 系统 | macOS 14.0 及以上，仅 macOS；**仅 Apple 芯片（arm64）**，见下 |
 | 构建 | Xcode 27（项目文件格式较新） |
 | 引擎 | N_m3u8DL-RE 可执行文件，见下文 |
 | ffmpeg | 合并、混流和写元数据时需要，**不随应用打包**，用系统里的，例如 `brew install ffmpeg` |
+
+架构固定为 arm64（`Config/Shared.xcconfig` 里的 `ARCHS`）：内置的引擎默认只编译 arm64，如果应用同时构建 x86_64，嵌入步骤会因为架构对不上而跳过引擎，包里就没有引擎了。要支持 Intel，需要删掉那一行，并在上级仓库里运行 `scripts/build-engine.sh --universal`。
 
 应用**没有开启沙盒**：它需要启动引擎和 ffmpeg 子进程，并写入你选择的任意目录。
 
@@ -60,6 +62,21 @@ cp Config/Local.xcconfig.example Config/Local.xcconfig
 - `scripts/embed-engine.sh` 由工程里的 Run Script 阶段调用，把引擎复制进应用包并重新签名。
 
 单独使用这个仓库时没有这两个脚本，Run Script 阶段只会给出警告，应用仍能构建，引擎需要在设置里指定一个现成的可执行文件。
+
+## 常见问题
+
+**下载失败，提示 `Segment count check not pass, total: 774, downloaded: 773.`**
+
+有一个分片没有完整下载。先看日志里同一个分片是不是每次重试都失败（例如反复出现同样的 `The response ended prematurely, with at least N additional bytes expected`）：
+
+- 是的话，多半是服务器上那个分片本身损坏了，重试、加线程、加重试次数都没有用。实测过一个 Apple 活动视频：CDN 对其中一个分片声明了 2.4 MB，却只返回 1 个字节就断开，换 HTTP/1.1、Range 请求、绕缓存都一样，34 个视频变体里有 5 个在同一位置损坏，其余正常。
+- 办法一：在轨道列表里换一个流，比如同分辨率的另一个码率。
+- 办法二：在 Advanced 里把 Check segment count 关掉，引擎会跳过检查并合并出文件，但缺少那一个分片，画面会有几秒跳变。
+- 如果每次失败的分片都不同，那才是网络问题，可以调低 Threads、调高 Retries。
+
+**顶部出现橙色或红色的横幅**
+
+红色表示找不到下载引擎，橙色表示找不到 ffmpeg（没有它仍可下载，只是不能合并和写元数据）。点 “How to fix” 查看处理方法，处理后点 “Check again”。
 
 ## 测试
 
